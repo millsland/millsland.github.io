@@ -20,7 +20,8 @@
             --color-bg: #ffffff;
             --color-border: #e0e0e0;
             --font-serif: 'Libre Baskerville', Georgia, serif;
-            --max-width: 680px;
+            --narrow-width: 680px;
+            --wide-width: 960px;
             --spacing-unit: 1.5rem;
         }
 
@@ -31,7 +32,7 @@
         }
 
         html {
-            font-size: 19px;
+            font-size: 18px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -44,8 +45,13 @@
             padding: calc(var(--spacing-unit) * 2) var(--spacing-unit);
         }
 
-        .container {
-            max-width: var(--max-width);
+        .container-narrow {
+            max-width: var(--narrow-width);
+            margin: 0 auto;
+        }
+
+        .container-wide {
+            max-width: var(--wide-width);
             margin: 0 auto;
         }
 
@@ -120,14 +126,46 @@
             margin-bottom: var(--spacing-unit);
         }
 
-        /* Recent posts section */
-        .recent-posts {
+        /* Two-column grid for Quora/Facebook */
+        .two-column-equal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: calc(var(--spacing-unit) * 2);
             margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        .two-column-equal h2 {
+            margin-top: 0;
+        }
+
+        .two-column-equal .section-image {
+            margin-top: 0;
+        }
+
+        /* Two-column grid for Miscellany/Recent Posts (2:1 ratio) */
+        .two-column-weighted {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        .two-column-weighted h2 {
+            margin-top: 0;
+        }
+
+        /* Recent posts section */
+        .recent-posts h2 {
+            margin-top: 0;
         }
 
         .substack-header {
             margin: calc(var(--spacing-unit) * 1.5) 0 var(--spacing-unit);
             display: block;
+        }
+
+        .substack-header:first-of-type {
+            margin-top: var(--spacing-unit);
         }
 
         .substack-header img {
@@ -157,12 +195,6 @@
             display: block;
         }
 
-        @media (max-width: 500px) {
-            .photo-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         /* Footer */
         footer {
             border-top: 1px solid var(--color-border);
@@ -188,11 +220,28 @@
         .social-links a:hover {
             color: var(--color-text);
         }
+
+        /* Responsive: stack columns on mobile */
+        @media (max-width: 700px) {
+            .two-column-equal,
+            .two-column-weighted {
+                grid-template-columns: 1fr;
+            }
+
+            .two-column-equal > div:last-child h2,
+            .two-column-weighted > div:last-child h2 {
+                margin-top: calc(var(--spacing-unit) * 2);
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-
+    <!-- Narrow intro section -->
+    <div class="container-narrow">
         <figure class="hero-image">
             <img src="images/millsland.jpg.webp" alt="Millsland letterforms">
             <figcaption>Letterforms above by <a href="http://helentseng.com">Helen Tseng</a>. Flower pattern inside by <a href="https://joro.cargo.site">Joro Chen</a>.</figcaption>
@@ -210,40 +259,54 @@
             </figure>
 
             <p>I've been online since <a href="http://en.wikipedia.org/wiki/EWorld">eWorld</a> and sent my first web site over FTP in 1997 after <a href="https://www.quora.com/Whats-it-like-to-work-with-Jonah-Peretti/answer/Mills-Baker">I learned HTML from Jonah Peretti</a> in my hometown high school. Since then, I've worked for Quora, Facebook, some small startups, a massive retailer, a veterinary hospital, Tipitina's, and myself, doing freelance web design. My <a href="https://www.linkedin.com/in/millsbaker">full CV is here</a>.</p>
+        </main>
+    </div>
 
-            <h2>Quora (2016–2020)</h2>
+    <!-- Wide two-column section: Quora and Facebook -->
+    <div class="container-wide">
+        <div class="two-column-equal">
+            <div>
+                <h2>Quora (2016–2020)</h2>
 
-            <figure class="section-image">
-                <img src="images/quoragang.jpg.webp" alt="Quora team">
-            </figure>
+                <figure class="section-image">
+                    <img src="images/quoragang.jpg.webp" alt="Quora team">
+                </figure>
 
-            <p>At Quora I was a Product Design Manager, supporting an incredible team of designers working all over the platform. Product Designers I managed iterated and ran experiments on home feed; <a href="https://quorablog.quora.com/Introducing-Spaces">launched Spaces</a> (our communities product); shipped an immense amount of core product work; expanded <a href="https://quorablog.quora.com/Launching-a-beta-for-Quora-en-français">i18n</a> dramatically (in a complex context); improved <a href="https://quorablog.quora.com/Launching-our-ads-platform">our ads products</a>, making them better than they ought to have been, really; figured out video on Quora; developed automatic image generation tools; did <a href="https://quorapartners.quora.com/Expanding-the-Partner-Program">thorny work on payments</a> (including a lot of data translation and visualization); and much, much more. I also worked to scale the team, helping to almost double its size, while improving processes, instantiating culture, and helping with product strategy. Quora's was a technical design team, and I remain interested in designers gaining leverage over product through coding, as well as their improved rate of learning when they do so.</p>
+                <p>At Quora I was a Product Design Manager, supporting an incredible team of designers working all over the platform. Product Designers I managed iterated and ran experiments on home feed; <a href="https://quorablog.quora.com/Introducing-Spaces">launched Spaces</a> (our communities product); shipped an immense amount of core product work; expanded <a href="https://quorablog.quora.com/Launching-a-beta-for-Quora-en-français">i18n</a> dramatically (in a complex context); improved <a href="https://quorablog.quora.com/Launching-our-ads-platform">our ads products</a>, making them better than they ought to have been, really; figured out video on Quora; developed automatic image generation tools; did <a href="https://quorapartners.quora.com/Expanding-the-Partner-Program">thorny work on payments</a> (including a lot of data translation and visualization); and much, much more. I also worked to scale the team, helping to almost double its size, while improving processes, instantiating culture, and helping with product strategy. Quora's was a technical design team, and I remain interested in designers gaining leverage over product through coding, as well as their improved rate of learning when they do so.</p>
 
-            <p>I'm so proud of what the team at Quora accomplished and truly loved my time there; <a href="https://x.com/millsbaker/status/1801357956631695835">I'm even proud of what everyone got up to afterwards</a>!</p>
+                <p>I'm so proud of what the team at Quora accomplished and truly loved my time there; <a href="https://x.com/millsbaker/status/1801357956631695835">I'm even proud of what everyone got up to afterwards</a>!</p>
+            </div>
 
-            <h2>Facebook (2015–2016)</h2>
+            <div>
+                <h2>Facebook (2015–2016)</h2>
 
-            <figure class="section-image">
-                <img src="images/facebookgang.jpg.webp" alt="Facebook team">
-            </figure>
+                <figure class="section-image">
+                    <img src="images/facebookgang.jpg.webp" alt="Facebook team">
+                </figure>
 
-            <p>By 2015, Facebook was concerned about declining "personal sharing": people weren't posting about themselves anymore, although posting links to news stories + commentary was going strong. They assembled a team tasked with resuscitating personal sharing, and I was hired and assigned to it. It was one of the most educational experiences imaginable for someone in my line of work. I could talk for hours about it all.</p>
+                <p>By 2015, Facebook was concerned about declining "personal sharing": people weren't posting about themselves anymore, although posting links to news stories + commentary was going strong. They assembled a team tasked with resuscitating personal sharing, and I was hired and assigned to it. It was one of the most educational experiences imaginable for someone in my line of work. I could talk for hours about it all.</p>
 
-            <p>Ultimately, our team focused on developing new formats, tools, and experiences that would incentivize sharing, make it more fun, or make it easier. Although we also did a lot of work on ways of addressing the dynamics that made people feel uncomfortable posting in the first place —from audience problems to context collapse— we shipped little of that, and while the UI and media and format work was often popular, it was ineffective at reversing the decline in personal sharing.</p>
+                <p>Ultimately, our team focused on developing new formats, tools, and experiences that would incentivize sharing, make it more fun, or make it easier. Although we also did a lot of work on ways of addressing the dynamics that made people feel uncomfortable posting in the first place —from audience problems to context collapse— we shipped little of that, and while the UI and media and format work was often popular, it was ineffective at reversing the decline in personal sharing.</p>
 
-            <p>I also shipped <a href="https://about.fb.com/news/2015/09/updates-for-facebook-notes/">improvements to Notes</a>, Facebook's writing tool, and did onboarding for newly hired designers as part of Design Camp.</p>
+                <p>I also shipped <a href="https://about.fb.com/news/2015/09/updates-for-facebook-notes/">improvements to Notes</a>, Facebook's writing tool, and did onboarding for newly hired designers as part of Design Camp.</p>
+            </div>
+        </div>
 
-            <h2>Miscellany</h2>
+        <!-- Wide two-column section: Miscellany (2/3) and Recent Posts (1/3) -->
+        <div class="two-column-weighted">
+            <div>
+                <h2>Miscellany</h2>
 
-            <p>I started a blog called <strong><a href="https://mills.tumblr.com">Meta is Murder</a></strong> in 2007, and over the years it developed a surprisingly large readership; much of my writing is there, and people have liked posts on <a href="https://medium.com/@millsbaker/designer-duds-f59c964513ef">the imperative that design deliver value</a>, <a href="https://mills.tumblr.com/post/11186748510/design-compromise">how design and compromise relate</a>, and the <a href="https://mills.tumblr.com/post/44155254813/the-charisma-of-leaders">charisma of Steve Jobs</a>. <a href="https://mills.tumblr.com/tagged/selected">Here's a "best of"</a> (puke, sorry, just trying to make this helpful for anyone curious). I also did a <em>ton</em> of writing about design, psychology and mental illness, philosophy, technology, and <a href="https://www.quora.com/profile/Mills-Baker">much more at Quora over the years</a>.</p>
+                <p>I started a blog called <strong><a href="https://mills.tumblr.com">Meta is Murder</a></strong> in 2007, and over the years it developed a surprisingly large readership; much of my writing is there, and people have liked posts on <a href="https://medium.com/@millsbaker/designer-duds-f59c964513ef">the imperative that design deliver value</a>, <a href="https://mills.tumblr.com/post/11186748510/design-compromise">how design and compromise relate</a>, and the <a href="https://mills.tumblr.com/post/44155254813/the-charisma-of-leaders">charisma of Steve Jobs</a>. <a href="https://mills.tumblr.com/tagged/selected">Here's a "best of"</a> (puke, sorry, just trying to make this helpful for anyone curious). I also did a <em>ton</em> of writing about design, psychology and mental illness, philosophy, technology, and <a href="https://www.quora.com/profile/Mills-Baker">much more at Quora over the years</a>.</p>
 
-            <p>In general, I believe in applying pragmatism and critical rationalism to business, product, and organizational problems. I think epistemological caution —for example, <a href="https://medium.com/quora-design/story-thought-and-system-thought-188dce7a87e6">distinguishing between different modes of thinking</a>— is extremely important and should inform both how software is developed and how people should treat one another. As you can imagine, I'm a pluralist about most questions.</p>
+                <p>In general, I believe in applying pragmatism and critical rationalism to business, product, and organizational problems. I think epistemological caution —for example, <a href="https://medium.com/quora-design/story-thought-and-system-thought-188dce7a87e6">distinguishing between different modes of thinking</a>— is extremely important and should inform both how software is developed and how people should treat one another. As you can imagine, I'm a pluralist about most questions.</p>
 
-            <p>Recently I've been interested in the effects of technology on perennial human concerns and ignored or misunderstood instincts, needs, and feelings. I'm especially fascinated by <a href="https://alwaysreadthemanual.com/read/issues/5/mills-baker/article.html">online moralizing, othering, harassment, reduction, and similar norm-enforcing behaviors</a>, and how network design influences them all. I'm also interested in UI innovation, especially involving <a href="https://medium.com/@millsbaker/e190d324c08d">the abstraction of complexity and the trade-offs involved</a> in empowering users in various, sometimes non-obvious ways.</p>
+                <p>Recently I've been interested in the effects of technology on perennial human concerns and ignored or misunderstood instincts, needs, and feelings. I'm especially fascinated by <a href="https://alwaysreadthemanual.com/read/issues/5/mills-baker/article.html">online moralizing, othering, harassment, reduction, and similar norm-enforcing behaviors</a>, and how network design influences them all. I'm also interested in UI innovation, especially involving <a href="https://medium.com/@millsbaker/e190d324c08d">the abstraction of complexity and the trade-offs involved</a> in empowering users in various, sometimes non-obvious ways.</p>
 
-            <p>In my spare time I mostly hang out with my family and friends.</p>
+                <p>In my spare time I mostly hang out with my family and friends.</p>
+            </div>
 
-            <section class="recent-posts">
+            <div class="recent-posts">
                 <h2>Recent Posts</h2>
 
                 <a href="http://thedeadhorses.substack.com" class="substack-header">
@@ -266,14 +329,17 @@
                     <p>On <a href="https://ratsfromrocks.substack.com/p/naked-emperors-gell-mann-memory-and">contemporary trends in religiosity and spirituality…</a></p>
                     <p>On <a href="https://ratsfromrocks.substack.com/p/you-are-a-solution-to-unstable-tensions">the Enneagram personality-typing system…</a></p>
                 </div>
-            </section>
-
-            <div class="photo-grid">
-                <img src="images/kizzyandi.jpeg.webp" alt="Family photo">
-                <img src="images/abbyandraines.jpeg.webp" alt="Family photo">
             </div>
-        </main>
+        </div>
 
+        <div class="photo-grid">
+            <img src="images/kizzyandi.jpeg.webp" alt="Family photo">
+            <img src="images/abbyandraines.jpeg.webp" alt="Family photo">
+        </div>
+    </div>
+
+    <!-- Footer back to narrow -->
+    <div class="container-narrow">
         <footer>
             <nav class="social-links">
                 <a href="http://mills.tumblr.com">tumblr</a>
