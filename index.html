@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Millsland</title>
+    <meta name="description" content="Mills Baker's portfolio, resume, and writing on design, technology, philosophy, history, music, and other trash.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-text: #1a1a1a;
+            --color-text-secondary: #555;
+            --color-link: #1a1a1a;
+            --color-link-hover: #666;
+            --color-bg: #fafafa;
+            --color-border: #e0e0e0;
+            --font-serif: 'Newsreader', Georgia, serif;
+            --font-sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            --max-width: 680px;
+            --spacing-unit: 1.5rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-serif);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.7;
+            padding: calc(var(--spacing-unit) * 2) var(--spacing-unit);
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            padding-bottom: calc(var(--spacing-unit) * 2);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .site-title {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .site-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Hero image */
+        .hero-image {
+            margin: calc(var(--spacing-unit) * 2) 0;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-image figcaption {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .hero-image figcaption a {
+            color: var(--color-text-secondary);
+        }
+
+        /* Main content */
+        main {
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        p {
+            margin-bottom: var(--spacing-unit);
+        }
+
+        a {
+            color: var(--color-link);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
+            transition: color 0.15s ease;
+        }
+
+        a:hover {
+            color: var(--color-link-hover);
+        }
+
+        strong a {
+            font-weight: 600;
+        }
+
+        /* Section images */
+        .section-image {
+            margin: calc(var(--spacing-unit) * 1.5) 0;
+        }
+
+        .section-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Section headings */
+        h2 {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-top: calc(var(--spacing-unit) * 2.5);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        /* Recent posts section */
+        .recent-posts {
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        .substack-header {
+            margin: calc(var(--spacing-unit) * 1.5) 0 var(--spacing-unit);
+        }
+
+        .substack-header img {
+            max-width: 280px;
+            height: auto;
+        }
+
+        .post-list {
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+
+        .post-list p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Photo grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: calc(var(--spacing-unit) * 2) 0;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 500px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding-top: calc(var(--spacing-unit) * 2);
+            text-align: center;
+        }
+
+        .footer-title {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bio {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--color-text);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="site-title"><a href="/">mills.land</a></div>
+            <p class="tagline">Mills Baker's portfolio, resume, and writing on design, technology, philosophy, history, music, and other trash.</p>
+        </header>
+
+        <figure class="hero-image">
+            <!-- Replace src with your image path -->
+            <img src="images/letterforms.jpg" alt="Millsland letterforms">
+            <figcaption>Letterforms above by <a href="http://helentseng.com">Helen Tseng</a>. Flower pattern inside by <a href="https://joro.cargo.site">Joro Chen</a>.</figcaption>
+        </figure>
+
+        <main>
+            <p>Hi! My name is Mills Baker. I'm from New Orleans and after more than a decade in San Francisco, I now live there again with my wife Abby, our daughter Keziah, and our son Raines. I'm the Head of Design at <strong><a href="https://substack.com">Substack</a></strong>, supporting an amazing team which serves creatives and audiences alike in a new model of distribution and monetization which we believe will foster a healthier, more sustainable online media ecosystem. Below, you can see some of us at Substack's 2023 summer party at the Conservatory of Flowers!</p>
+
+            <p>I currently post at <strong><a href="https://ratsfromrocks.substack.com">Rats from Rocks</a></strong> with my pals <a href="http://davidcole.me">David Cole</a> and <a href="https://twitter.com/JackdeCoeur">Omar Khalid</a>. Some recent posts from me include <a href="https://suckstosuck.substack.com/p/father">thoughts on my father's death</a> and <a href="https://suckstosuck.substack.com/p/mother">more on my mother's death</a>; concerns that <a href="https://suckstosuck.substack.com/p/good-news-its-all-still-a-complete">people have been misinformed about the origin of the universe</a>; the usual garbage about <a href="https://suckstosuck.substack.com/p/knowledge-is-the-novels-only-morality">literature</a> and <a href="https://suckstosuck.substack.com/p/vision">technology</a>; and so on. David and I also write <strong><a href="https://thedeadhorses.substack.com">Dead Horses, a design + technology</a></strong> newsletter.</p>
+
+            <p>I'm <strong><a href="https://substack.com/@mills">most active online on Substack</a></strong>!</p>
+
+            <figure class="section-image">
+                <img src="images/substack-party.jpg" alt="Substack team at summer party">
+            </figure>
+
+            <p>I've been online since <a href="http://en.wikipedia.org/wiki/EWorld">eWorld</a> and sent my first web site over FTP in 1997 after <a href="https://www.quora.com/Whats-it-like-to-work-with-Jonah-Peretti/answer/Mills-Baker">I learned HTML from Jonah Peretti</a> in my hometown high school. Since then, I've worked for Quora, Facebook, some small startups, a massive retailer, a veterinary hospital, Tipitina's, and myself, doing freelance web design. My <a href="https://www.linkedin.com/in/millsbaker">full CV is here</a>.</p>
+
+            <h2>Quora (2016–2020)</h2>
+
+            <figure class="section-image">
+                <img src="images/quora.jpg" alt="Quora team">
+            </figure>
+
+            <p>At Quora I was a Product Design Manager, supporting an incredible team of designers working all over the platform. Product Designers I managed iterated and ran experiments on home feed; <a href="https://quorablog.quora.com/Introducing-Spaces">launched Spaces</a> (our communities product); shipped an immense amount of core product work; expanded <a href="https://quorablog.quora.com/Launching-a-beta-for-Quora-en-français">i18n</a> dramatically (in a complex context); improved <a href="https://quorablog.quora.com/Launching-our-ads-platform">our ads products</a>, making them better than they ought to have been, really; figured out video on Quora; developed automatic image generation tools; did <a href="https://quorapartners.quora.com/Expanding-the-Partner-Program">thorny work on payments</a> (including a lot of data translation and visualization); and much, much more. I also worked to scale the team, helping to almost double its size, while improving processes, instantiating culture, and helping with product strategy. Quora's was a technical design team, and I remain interested in designers gaining leverage over product through coding, as well as their improved rate of learning when they do so.</p>
+
+            <p>I'm so proud of what the team at Quora accomplished and truly loved my time there; <a href="https://x.com/millsbaker/status/1801357956631695835">I'm even proud of what everyone got up to afterwards</a>!</p>
+
+            <h2>Facebook (2015–2016)</h2>
+
+            <figure class="section-image">
+                <img src="images/facebook.jpg" alt="Facebook team">
+            </figure>
+
+            <p>By 2015, Facebook was concerned about declining "personal sharing": people weren't posting about themselves anymore, although posting links to news stories + commentary was going strong. They assembled a team tasked with resuscitating personal sharing, and I was hired and assigned to it. It was one of the most educational experiences imaginable for someone in my line of work. I could talk for hours about it all.</p>
+
+            <p>Ultimately, our team focused on developing new formats, tools, and experiences that would incentivize sharing, make it more fun, or make it easier. Although we also did a lot of work on ways of addressing the dynamics that made people feel uncomfortable posting in the first place —from audience problems to context collapse— we shipped little of that, and while the UI and media and format work was often popular, it was ineffective at reversing the decline in personal sharing.</p>
+
+            <p>I also shipped <a href="https://about.fb.com/news/2015/09/updates-for-facebook-notes/">improvements to Notes</a>, Facebook's writing tool, and did onboarding for newly hired designers as part of Design Camp.</p>
+
+            <h2>Miscellany</h2>
+
+            <p>I started a blog called <strong><a href="https://mills.tumblr.com">Meta is Murder</a></strong> in 2007, and over the years it developed a surprisingly large readership; much of my writing is there, and people have liked posts on <a href="https://medium.com/@millsbaker/designer-duds-f59c964513ef">the imperative that design deliver value</a>, <a href="https://mills.tumblr.com/post/11186748510/design-compromise">how design and compromise relate</a>, and the <a href="https://mills.tumblr.com/post/44155254813/the-charisma-of-leaders">charisma of Steve Jobs</a>. <a href="https://mills.tumblr.com/tagged/selected">Here's a "best of"</a> (puke, sorry, just trying to make this helpful for anyone curious). I also did a <em>ton</em> of writing about design, psychology and mental illness, philosophy, technology, and <a href="https://www.quora.com/profile/Mills-Baker">much more at Quora over the years</a>.</p>
+
+            <p>In general, I believe in applying pragmatism and critical rationalism to business, product, and organizational problems. I think epistemological caution —for example, <a href="https://medium.com/quora-design/story-thought-and-system-thought-188dce7a87e6">distinguishing between different modes of thinking</a>— is extremely important and should inform both how software is developed and how people should treat one another. As you can imagine, I'm a pluralist about most questions.</p>
+
+            <p>Recently I've been interested in the effects of technology on perennial human concerns and ignored or misunderstood instincts, needs, and feelings. I'm especially fascinated by <a href="https://alwaysreadthemanual.com/read/issues/5/mills-baker/article.html">online moralizing, othering, harassment, reduction, and similar norm-enforcing behaviors</a>, and how network design influences them all. I'm also interested in UI innovation, especially involving <a href="https://medium.com/@millsbaker/e190d324c08d">the abstraction of complexity and the trade-offs involved</a> in empowering users in various, sometimes non-obvious ways.</p>
+
+            <p>In my spare time I mostly hang out with my family and friends.</p>
+
+            <section class="recent-posts">
+                <h2>Recent Posts</h2>
+
+                <a href="http://thedeadhorses.substack.com" class="substack-header">
+                    <img src="images/dead-horses.png" alt="Dead Horses">
+                </a>
+
+                <div class="post-list">
+                    <p>On <a href="https://thedeadhorses.substack.com/p/hype-cycles-and-the-principle-of">(foolish or wise) optimism in technology and business…</a></p>
+                    <p>On <a href="https://thedeadhorses.substack.com/p/sora-is-mad-libs-would-a-mad-libs">Sora and the likely future of LLM-generated content…</a></p>
+                    <p>On <a href="https://thedeadhorses.substack.com/p/effectiveness-not-authority">the "authority" of design within organizations…</a></p>
+                    <p>On <a href="https://thedeadhorses.substack.com/p/what-apples-llm-fumbles-say-about">Apple and their missteps with LLMs (a.k.a. "AI")…</a></p>
+                </div>
+
+                <a href="http://ratsfromrocks.substack.com" class="substack-header">
+                    <img src="images/rats-from-rocks.png" alt="Rats from Rocks">
+                </a>
+
+                <div class="post-list">
+                    <p>On <a href="https://ratsfromrocks.substack.com/p/how-i-believe">my personal religious and metaphysical beliefs…</a></p>
+                    <p>On <a href="https://ratsfromrocks.substack.com/p/naked-emperors-gell-mann-memory-and">contemporary trends in religiosity and spirituality…</a></p>
+                    <p>On <a href="https://ratsfromrocks.substack.com/p/you-are-a-solution-to-unstable-tensions">the Enneagram personality-typing system…</a></p>
+                </div>
+            </section>
+
+            <div class="photo-grid">
+                <img src="images/family1.jpeg" alt="Family photo">
+                <img src="images/family2.jpeg" alt="Family photo">
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-title">Millsland</div>
+            <p class="footer-bio">I'm Mills Baker, and Millsland is my home on the Internet.</p>
+            <nav class="social-links">
+                <a href="http://mills.tumblr.com">tumblr</a>
+                <a href="https://medium.com/@millsbaker">medium</a>
+                <a href="http://www.facebook.com/23438587">facebook</a>
+                <a href="https://www.flickr.com/people/millsbaker/">flickr</a>
+                <a href="https://www.linkedin.com/in/millsbaker">linkedin</a>
+                <a href="mailto:boss@mills.land">email</a>
+            </nav>
+        </footer>
+    </div>
+</body>
+</html>
