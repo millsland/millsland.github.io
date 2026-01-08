@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -19,8 +19,7 @@
             --color-link-hover: #666;
             --color-bg: #ffffff;
             --color-border: #e0e0e0;
-            --font-serif: 'Newsreader', Georgia, serif;
-            --font-sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Libre Baskerville', Georgia, serif;
             --max-width: 680px;
             --spacing-unit: 1.5rem;
         }
@@ -32,7 +31,7 @@
         }
 
         html {
-            font-size: 17px;
+            font-size: 19px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -47,37 +46,6 @@
 
         .container {
             max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        /* Header */
-        header {
-            text-align: center;
-            margin-bottom: calc(var(--spacing-unit) * 2);
-            padding-bottom: calc(var(--spacing-unit) * 2);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .site-title {
-            font-family: var(--font-sans);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--color-text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .site-title a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .tagline {
-            font-size: 0.95rem;
-            color: var(--color-text-secondary);
-            font-style: italic;
-            max-width: 480px;
             margin: 0 auto;
         }
 
@@ -142,12 +110,12 @@
 
         /* Section headings */
         h2 {
-            font-family: var(--font-sans);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--color-text-secondary);
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-transform: none;
+            color: var(--color-text);
             margin-top: calc(var(--spacing-unit) * 2.5);
             margin-bottom: var(--spacing-unit);
         }
@@ -159,6 +127,7 @@
 
         .substack-header {
             margin: calc(var(--spacing-unit) * 1.5) 0 var(--spacing-unit);
+            display: block;
         }
 
         .substack-header img {
@@ -201,22 +170,6 @@
             text-align: center;
         }
 
-        .footer-title {
-            font-family: var(--font-sans);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-bio {
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-            font-style: italic;
-            margin-bottom: var(--spacing-unit);
-        }
-
         .social-links {
             display: flex;
             justify-content: center;
@@ -225,10 +178,9 @@
         }
 
         .social-links a {
-            font-family: var(--font-sans);
-            font-size: 0.8rem;
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
             text-transform: lowercase;
-            letter-spacing: 0.05em;
             color: var(--color-text-secondary);
             text-decoration: none;
         }
@@ -240,10 +192,8 @@
 </head>
 <body>
     <div class="container">
-  
 
         <figure class="hero-image">
-            <!-- Replace src with your image path -->
             <img src="images/millsland.jpg.webp" alt="Millsland letterforms">
             <figcaption>Letterforms above by <a href="http://helentseng.com">Helen Tseng</a>. Flower pattern inside by <a href="https://joro.cargo.site">Joro Chen</a>.</figcaption>
         </figure>
@@ -325,7 +275,6 @@
         </main>
 
         <footer>
-           
             <nav class="social-links">
                 <a href="http://mills.tumblr.com">tumblr</a>
                 <a href="https://medium.com/@millsbaker">medium</a>
