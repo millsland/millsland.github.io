@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mills Baker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #F2F2F2;
+            --color-accent: #FF3B30; 
+            --color-text-main: #000000;
+            --color-text-inverse: #FFFFFF;
+            --font-display: 'UnifrakturMaguntia', cursive; 
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-body);
+            height: 100vh;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            height: 100%;
+            width: 100%;
+        }
+
+        .section-hero {
+            flex: 0 0 45%; 
+            background-color: var(--color-bg);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid rgba(0,0,0,0.05); 
+            overflow-y: auto;
+        }
+
+        .hero-header {
+            margin-bottom: 4rem;
+        }
+
+        .brand-logo {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            max-width: 90%;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-bio {
+            font-size: 1.125rem;
+            line-height: 1.5;
+            max-width: 48ch;
+            font-weight: 400;
+        }
+
+        .attribution {
+            margin-top: auto;
+            padding-top: 3rem;
+            font-size: 0.75rem;
+            color: #666;
+            border-top: 2px solid var(--color-accent);
+            display: inline-block;
+            padding-right: 1rem;
+        }
+
+        .nav-columns {
+            display: flex;
+            flex: 0 0 auto;
+        }
+
+        .nav-column {
+            width: 180px; 
+            background-color: var(--color-accent);
+            border-right: 1px solid rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .column-header {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .nav-item {
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.3;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 0.5rem;
+            transition: opacity 0.15s ease;
+        }
+
+        .nav-item a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-item:hover {
+            opacity: 0.7;
+        }
+
+        .nav-item span {
+            display: block;
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 0.2rem;
+            font-weight: 400;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                height: auto;
+                overflow: auto;
+            }
+
+            .main-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .section-hero {
+                flex: none;
+                width: 100%;
+                padding: 1.5rem;
+                min-height: 80vh; 
+                border-right: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .nav-columns {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-column {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+                min-height: auto;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <section class="section-hero">
+            <div>
+                <span class="brand-logo">mb</span>
+                <h1 class="hero-title">Head of Design at Substack. Based in New Orleans.</h1>
+                <div class="hero-bio">
+                    <p>Hi! My name is Mills Baker. I'm from New Orleans and after years in New York and more than a decade in California, I'm back home again with my wife Abby, our daughter Keziah, and our son Raines.</p>
+                    <br>
+                    <p>I support an amazing team which serves creatives and audiences alike in a new model of distribution and monetization which we believe will foster a healthier, more sustainable online media ecosystem.</p>
+                </div>
+            </div>
+            
+            <div class="attribution">
+                Letterforms above by Helen Tseng.<br>
+                Flower pattern inside by Joro Chen.
+            </div>
+        </section>
+
+        <div class="nav-columns">
+            
+            <section class="nav-column">
+                <h2 class="column-header">Rats from Rocks</h2>
+                <ul class="nav-list">
+                    
+                </ul>
+            </section>
+
+            <section class="nav-column">
+                <h2 class="column-header">Dead Horses</h2>
+                <ul class="nav-list">
+                    
+                </ul>
+            </section>
+
+            <section class="nav-column">
+                <h2 class="column-header">Notes</h2>
+                <ul class="nav-list">
+                    
+                    <li class="nav-item">
+                        <a href="https://substack.com/@mills" target="_blank" rel="noopener">
+                            Visit my Substack for notes
+                            <span></span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+    </div>
+
+</body>
+</html>
