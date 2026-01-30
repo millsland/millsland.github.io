@@ -1,0 +1,13 @@
+{
+  "name": "mills-land",
+  "version": "1.0.0",
+  "description": "Mills Baker's personal website",
+  "scripts": {
+    "scrape": "node scrape-notes.js",
+    "build": "node build.js",
+    "update": "npm run scrape && npm run build"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  }
+}
