@@ -12,26 +12,26 @@ const MAX_POSTS = 5;
 function parseRSS(xml) {
     const items = [];
     const itemMatches = xml.match(/<item>([\s\S]*?)<\/item>/g) || [];
-    
+
     for (const itemXml of itemMatches.slice(0, MAX_POSTS)) {
-        const title = (itemXml.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/) || 
+        const title = (itemXml.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/) ||
                        itemXml.match(/<title>(.*?)<\/title>/) || [])[1] || 'Untitled';
         const link = (itemXml.match(/<link>(.*?)<\/link>/) || [])[1] || '#';
         const pubDate = (itemXml.match(/<pubDate>(.*?)<\/pubDate>/) || [])[1] || '';
-        
+
         let formattedDate = '';
         if (pubDate) {
             const date = new Date(pubDate);
-            formattedDate = date.toLocaleDateString('en-US', { 
-                month: 'short', 
-                day: 'numeric', 
-                year: 'numeric' 
+            formattedDate = date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
             });
         }
-        
+
         items.push({ title: decodeHTMLEntities(title), link, date: formattedDate });
     }
-    
+
     return items;
 }
 
@@ -48,13 +48,24 @@ function decodeHTMLEntities(text) {
 
 function fetch(url) {
     return new Promise((resolve, reject) => {
-        const protocol = url.startsWith('https') ? https : http;
-        protocol.get(url, (res) => {
+        const parsedUrl = new URL(url);
+        const protocol = parsedUrl.protocol === 'https:' ? https : http;
+
+        const options = {
+            hostname: parsedUrl.hostname,
+            path: parsedUrl.pathname + parsedUrl.search,
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (compatible; MillsLandBot/1.0; +https://mills.land)',
+                'Accept': 'application/rss+xml, application/xml, text/xml, */*'
+            }
+        };
+
+        protocol.get(options, (res) => {
             // Handle redirects
             if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
                 return fetch(res.headers.location).then(resolve).catch(reject);
             }
-            
+
             let data = '';
             res.on('data', chunk => data += chunk);
             res.on('end', () => resolve(data));
@@ -83,11 +94,11 @@ function escapeHTML(str) {
 
 async function build() {
     console.log('Fetching RSS feeds...');
-    
+
     // Fetch both RSS feeds
     let ratsFromRocksPosts = [];
     let deadHorsesPosts = [];
-    
+
     try {
         const ratsRSS = await fetch(RATS_FROM_ROCKS_RSS);
         ratsFromRocksPosts = parseRSS(ratsRSS);
@@ -95,7 +106,7 @@ async function build() {
     } catch (err) {
         console.error('Error fetching Rats from Rocks RSS:', err.message);
     }
-    
+
     try {
         const deadHorsesRSS = await fetch(DEAD_HORSES_RSS);
         deadHorsesPosts = parseRSS(deadHorsesRSS);
@@ -103,7 +114,7 @@ async function build() {
     } catch (err) {
         console.error('Error fetching Dead Horses RSS:', err.message);
     }
-    
+
     // Load Notes from JSON file (populated by scraper)
     let notesPosts = [];
     const notesPath = path.join(__dirname, 'notes.json');
@@ -120,32 +131,32 @@ async function build() {
             { title: 'Notes coming soon...', link: 'https://substack.com/@mills', date: '' }
         ];
     }
-    
+
     // Read template
     const templatePath = path.join(__dirname, 'index.html');
     let html = fs.readFileSync(templatePath, 'utf8');
-    
+
     // Replace placeholders
     html = html.replace(
         '<!-- RATS_FROM_ROCKS_POSTS -->',
         generatePostsHTML(ratsFromRocksPosts)
     );
-    
+
     html = html.replace(
         '<!-- DEAD_HORSES_POSTS -->',
         generatePostsHTML(deadHorsesPosts)
     );
-    
+
     html = html.replace(
         '<!-- NOTES_POSTS -->',
         generatePostsHTML(notesPosts)
     );
-    
+
     // Write output
     const outputPath = path.join(__dirname, 'dist', 'index.html');
     fs.mkdirSync(path.join(__dirname, 'dist'), { recursive: true });
     fs.writeFileSync(outputPath, html);
-    
+
     console.log(`Built site to ${outputPath}`);
 }
 
