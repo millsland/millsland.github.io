@@ -13,8 +13,11 @@ function parseRSS(xml) {
     const items = [];
     const itemMatches = xml.match(/<item>([\s\S]*?)<\/item>/g) || [];
 
+    console.log(`Found ${itemMatches.length} <item> elements`);
+
     for (const itemXml of itemMatches.slice(0, MAX_POSTS)) {
-        const title = (itemXml.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/) ||
+        // More flexible CDATA matching - handle whitespace inside CDATA
+        const title = (itemXml.match(/<title><!\[CDATA\[\s*(.*?)\s*\]\]><\/title>/) ||
                        itemXml.match(/<title>(.*?)<\/title>/) || [])[1] || 'Untitled';
         const link = (itemXml.match(/<link>(.*?)<\/link>/) || [])[1] || '#';
         const pubDate = (itemXml.match(/<pubDate>(.*?)<\/pubDate>/) || [])[1] || '';
@@ -43,7 +46,9 @@ function decodeHTMLEntities(text) {
         .replace(/&quot;/g, '"')
         .replace(/&#39;/g, "'")
         .replace(/&#x27;/g, "'")
-        .replace(/&#x2F;/g, '/');
+        .replace(/&#x2F;/g, '/')
+        .replace(/&#8217;/g, "'")
+        .replace(/&#8212;/g, '—');
 }
 
 function fetch(url) {
@@ -55,20 +60,32 @@ function fetch(url) {
             hostname: parsedUrl.hostname,
             path: parsedUrl.pathname + parsedUrl.search,
             headers: {
-                'User-Agent': 'Mozilla/5.0 (compatible; MillsLandBot/1.0; +https://mills.land)',
-                'Accept': 'application/rss+xml, application/xml, text/xml, */*'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.5',
+                'Connection': 'keep-alive'
             }
         };
 
+        console.log(`Fetching: ${url}`);
+
         protocol.get(options, (res) => {
+            console.log(`Response status: ${res.statusCode}`);
+            console.log(`Content-Type: ${res.headers['content-type']}`);
+
             // Handle redirects
             if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+                console.log(`Redirecting to: ${res.headers.location}`);
                 return fetch(res.headers.location).then(resolve).catch(reject);
             }
 
             let data = '';
             res.on('data', chunk => data += chunk);
-            res.on('end', () => resolve(data));
+            res.on('end', () => {
+                console.log(`Response length: ${data.length} bytes`);
+                console.log(`First 500 chars: ${data.substring(0, 500)}`);
+                resolve(data);
+            });
             res.on('error', reject);
         }).on('error', reject);
     });
@@ -103,6 +120,9 @@ async function build() {
         const ratsRSS = await fetch(RATS_FROM_ROCKS_RSS);
         ratsFromRocksPosts = parseRSS(ratsRSS);
         console.log(`Fetched ${ratsFromRocksPosts.length} posts from Rats from Rocks`);
+        if (ratsFromRocksPosts.length > 0) {
+            console.log('First post:', JSON.stringify(ratsFromRocksPosts[0]));
+        }
     } catch (err) {
         console.error('Error fetching Rats from Rocks RSS:', err.message);
     }
